@@ -3,7 +3,6 @@ import React from 'react';
 const getRandomColor = (name) => {
   const colors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500'];
   const randomIndex = name.split(' ')[0].length % colors.length;
-  console.log(randomIndex, name);
   return colors[randomIndex];
 };
 

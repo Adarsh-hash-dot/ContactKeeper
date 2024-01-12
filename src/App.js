@@ -1,9 +1,11 @@
 import "./App.css";
-import { Contacts, Navbar } from "./components";
+import { Contacts, Navbar, Modal, ContactForm, AddButton } from "./components";
 import { useEffect, useState } from "react";
 
 function App() {
   const [contacts, setContacts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [initialData, setInitialData] = useState(null);
 
   useEffect(()=> {
     async function fetchContacts() {
@@ -25,10 +27,23 @@ function App() {
     setContacts(newContacts);
   }
 
-  function editContact(id, contact) {
-    const newContacts = contacts.map((c) => c.id === id ? contact : c);
-    setContacts(newContacts);
+  function handleEdit(contact) {
+    setShowModal(true)
+    setInitialData(contact)
   }
+
+  function handleSaveData(contact) {
+    let newContacts = null
+    if (contacts.some((c)=> c.id === contact.id)) {
+      newContacts = contacts.map((c) => c.id === contact.id ? contact : c);
+    } else {
+      newContacts = [...contacts, contact]
+    }
+    setContacts(newContacts);
+    setInitialData(null)
+    setShowModal(false)
+  }
+  
 
 
   return (
@@ -36,8 +51,15 @@ function App() {
       <Navbar></Navbar>
 
       {contacts.map((c) => {
-        return <Contacts key={c.id} contact={c} deleteContacts={deleteContacts} editContact={editContact} />
+        return <Contacts key={c.id} contact={c} deleteContacts={deleteContacts} handleEdit={handleEdit} />
       })}
+
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)} >
+      <ContactForm initialData={initialData} handleSaveData={handleSaveData}></ContactForm>
+      </Modal>
+
+      {showModal ? null : <AddButton handleClick={handleEdit}></AddButton>}
+      
 
 
     </div>
