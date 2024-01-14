@@ -30,7 +30,7 @@ const ContactForm = ({ initialData, handleSaveData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSaveData(formData)
+    handleSaveData(formData, initialData ? "PUT" : "POST");
   };
 
   return (

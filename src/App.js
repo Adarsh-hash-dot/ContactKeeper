@@ -22,7 +22,13 @@ function App() {
     fetchContacts()
   }, [])
 
-  function deleteContacts(id) {
+  async function deleteContacts(id) {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
     const newContacts = contacts.filter((c) => c.id !== id);
     setContacts(newContacts);
   }
@@ -32,8 +38,15 @@ function App() {
     setInitialData(contact)
   }
 
-  function handleSaveData(contact) {
+  async function handleSaveData(contact, method = "POST") {
     let newContacts = null
+    const response = await fetch("https://jsonplaceholder.typicode.com/users/" , {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact),
+    })
     if (contacts.some((c)=> c.id === contact.id)) {
       newContacts = contacts.map((c) => c.id === contact.id ? contact : c);
     } else {
