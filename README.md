@@ -14,7 +14,7 @@ This application is Contact saving application. Currently It asummes that the us
 
 ## Screenshots
 
-![App Screenshot]([https://i.postimg.cc/NffKbKyW/dashboard.png](https://i.postimg.cc/cJdx3KP5/contacts-app.png))
+![App Screenshot]([https://i.postimg.cc/cJdx3KP5/contacts-app.png](https://i.postimg.cc/cJdx3KP5/contacts-app.png))
 
 
 ## Demo
