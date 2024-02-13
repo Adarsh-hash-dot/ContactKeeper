@@ -31,7 +31,7 @@ Youtube Video Link
 
 ## Lessons Learned
 
-I have learned about useState, useEffect, state management, module CSS, props  passing.
+I have learned about useState, useEffect, state management, tailwind CSS, props  passing.
 
 - Generate colored profile picture
 
